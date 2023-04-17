@@ -1,0 +1,8 @@
+<!--  データの内容（詳細）を表示  -->
+<p>Title: <%= @book.title %></p>
+
+<p>Title: <%= @book.body %></p>
+
+<%= link_to 'Edit', edit_book_path(@book) %>
+<span>|</span>
+<%= link_to 'Back', books_path %>
