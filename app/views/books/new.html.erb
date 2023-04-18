@@ -1,7 +1,7 @@
 <!--  データ新規作成フォーム  -->
 
 <!--  フラッシュメッセージ  -->
-<div>
+<div class="flash">
   <%= flash[:notice] %>
 </div>
 
@@ -10,15 +10,13 @@
 <!--  バリデーションによるエラーメッセージ  -->
 <% if @book.errors.any? %>
   <%= @book.errors.count %> errors prohibited this book from being saved:
-  <ul>
-    <% @book.errors.fill_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
+  <% @book.errors.fill_messages.each do |message| %>
+    <%= message %>
+  <% end %>
 <% end %>
 
 
-<%= form_with model: @book, url: '/books', method: :post do |f| %>
+<%= form_with model: @book do |f| %>
 
   <!--  Title  -->
   <p>Title</p>
@@ -31,9 +29,8 @@
   <!--  送信ボタン  -->
   <%= f.submit 'Create Book' %>
   
-  <%= link_to "Edit", edit_book_path(@book.id) %>
-  <%= link_to "Destroy", book_path(@book.id), method: :delete, "date-confiem" => "本当に削除しますか？" %>
-
+  <%= link_to "Edit", edit_book_path(book) %>
+  <%= link_to 'Destroy', book_path(book), method: :delete, "data-confirm" => "Are you sure?" %>
 <% end %>
 
 <!--  

@@ -1,7 +1,9 @@
 <!--  データの内容（詳細）を表示  -->
+<%= flash[:success] %>
+
 <p>Title: <%= @book.title %></p>
 
-<p>Title: <%= @book.body %></p>
+<p>Body: <%= @book.body %></p>
 
 <%= link_to 'Edit', edit_book_path(@book) %>
 <span>|</span>
