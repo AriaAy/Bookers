@@ -1,10 +1,17 @@
-<!--  データの内容（詳細）を表示  -->
-<%= flash[:success] %>
+<!--  投稿詳細ページを表示  -->
+
+<!--  フラッシュメッセージ  -->
+<div class="flash">
+  <%= flash[:notice] %>
+  <%= flash[:success] %>
+</div>
 
 <p>Title: <%= @book.title %></p>
 
 <p>Body: <%= @book.body %></p>
 
+<!--  編集ボタン  -->
 <%= link_to 'Edit', edit_book_path(@book) %>
 <span>|</span>
+<!--  戻るボタン  -->
 <%= link_to 'Back', books_path %>
