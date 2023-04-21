@@ -11,14 +11,19 @@
 
 <%= form_with model: @book, url: book_path(@book) do |f| %>
 
-  <p>Title</p>
-  <%= f.text_field :title %>
+  <div class="field">
+    <label>Title</label>
+    <div><%= f.text_field :title %></div>
+  </div>
 
-  <p>Body</p>
-  <%= f.text_area :body %>
+  <div class="field">
+    <label>Body</label>
+    <div><%= f.text_area :body %></div>
+  </div>
 
-  <%= f.submit 'Update Book' %>
-
+  <div class="field">
+    <%= f.submit 'Update Book' %>
+  </div>
 <% end %>
 
 

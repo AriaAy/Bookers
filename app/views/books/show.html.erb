@@ -6,9 +6,9 @@
   <%= flash[:success] %>
 </div>
 
-<p>Title: <%= @book.title %></p>
+<p><strong>Title:</strong><%= @book.title %></p>
 
-<p>Body: <%= @book.body %></p>
+<p><strong>Body:</strong><%= @book.body %></p>
 
 <!--  編集ボタン  -->
 <%= link_to 'Edit', edit_book_path(@book) %>

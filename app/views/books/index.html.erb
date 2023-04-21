@@ -1,45 +1,56 @@
 <!--  投稿一覧ページ  -->
-<h1>Books</h1>
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Body</th>
-    <th></th>
-  </tr>
 
-  <% @books.each do |book| %>
+<body>
+  <h1>Books</h1>
+  <table>
     <tr>
-      <td><%= book.title %></td>
-      <td><%= book.body %></td>
-      <td><%= link_to 'Show', book_path(book) %></td>
-      <td><%= link_to 'Edit', edit_book_path(book) %></td>
-      <td><%= link_to 'Destroy', book_path(book), method: :delete, "data-confirm" => "Are you sure?" %></td>
-  　</tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th></th>
+    </tr>
+
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= book.title %></td>
+        <td><%= book.body %></td>
+        <td><%= link_to 'Show', book_path(book) %></td>
+        <td><%= link_to 'Edit', edit_book_path(book) %></td>
+        <td><%= link_to 'Destroy', book_path(book), method: :delete, "data-confirm" => "Are you sure?" %></td>
+    　</tr>
+    <% end %>
+  </table>
+
+  <!--  新規投稿表示  -->
+  <h1>New book</h1>
+  <!--  バリデーションによるエラーメッセージ  -->
+  <% if @book.errors.any? %>
+    <%= @book.errors.count %> errors prohibited this book from being saved:
+    <% @book.errors.each do |attribute,message| %>
+      <%= @book.errors.full_message(attribute, message) %>
+    <% end %>
   <% end %>
-</table>
 
-<!--  新規投稿表示  -->
-<h1>New book</h1>
-<!--  バリデーションによるエラーメッセージ  -->
-<% if @book.errors.any? %>
-  <%= @book.errors.count %> errors prohibited this book from being saved:
-  <% @book.errors.each do |attribute,message| %>
-    <%= @book.errors.full_message(attribute, message) %>
+
+  <%= form_with model: @book, url: books_path, local:true do |f| %>
+
+    <!--  Title  -->
+    <div class="field">
+      <label>Title</label>
+      <div><%= f.text_field :title %></div>
+    </div>
+
+
+    <!--  Body  -->
+    <div class="field">
+      <label>Body</label>
+      <div><%= f.text_area :body %></div>
+    </div>
+
+
+    <!--  投稿ボタン  -->
+    <div class="field">
+      <%= f.submit 'Create Book' %>
+    </div>
+
   <% end %>
-<% end %>
-
-
-<%= form_with model: @book, url: books_path, local:true do |f| %>
-
-  <!--  Title  -->
-  <p>Title</p>
-  <%= f.text_field :title %>
-
-  <!--  Body  -->
-  <p>Body</p>
-  <%= f.text_area :body %>
-
-  <!--  投稿ボタン  -->
-  <%= f.submit 'Create Book' %>
-
-<% end %>
+</body>
